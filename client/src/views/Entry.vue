@@ -9,7 +9,7 @@
       <div class="entry-info">
         <div class="name-title-wrapper">
           <h3 class="entry-name">{{ name }}</h3>
-          <h3 class="entry-title">{{ entry.title || "Untitled" }}</h3>
+          <h3 class="entry-title">{{ entry.title || 'Untitled' }}</h3>
         </div>
         <div class="site-wrapper">
           <p class="site-title">site</p>
@@ -32,10 +32,10 @@
           <tbody>
             <tr v-for="(item, key) in entry.items" :key="key">
               <td>{{ item.itemId }}</td>
-              <td>{{ item.itemTitle || "Untitled item" }}</td>
+              <td>{{ item.itemTitle || 'Untitled item' }}</td>
               <td>{{ item.medium }}</td>
-              <td>{{ item.additionalMedium || "No additional medium(s)" }}</td>
-              <td>{{ item.nfs ? "Not for sale" : `$${item.value}` }}</td>
+              <td>{{ item.additionalMedium || 'No additional medium(s)' }}</td>
+              <td>{{ item.nfs ? 'Not for sale' : `$${item.value}` }}</td>
               <td v-if="item.dimensions">{{ item.dimensions }}</td>
             </tr>
           </tbody>
@@ -107,12 +107,12 @@
 </style>
 
 <script>
-import repo from "../repo";
+import repo from '../repo';
 export default {
-  name: "Entry",
+  name: 'Entry',
   data() {
     return {
-      message: "Loading entry...",
+      message: 'Loading entry...',
       entry: null,
     };
   },
@@ -132,9 +132,9 @@ export default {
         this.message = null;
       } catch (error) {
         if (error && error.response && error.response.status == 404) {
-          this.message = "No such entry";
+          this.message = 'No such entry';
         } else {
-          this.message = "Failed to load entry, server may be down.";
+          this.message = 'Failed to load entry, server may be down.';
         }
       }
     },

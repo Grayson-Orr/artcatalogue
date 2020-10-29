@@ -35,9 +35,9 @@
       </div>
       <div class="section-wrapper">
         <select class="section-select" v-model="formData.section">
-          <option v-for="section in sections" :key="section" :value="section">{{
-            section
-          }}</option>
+          <option v-for="section in sections" :key="section" :value="section">
+            {{ section }}
+          </option>
         </select>
         <label class="little-label"> Section </label>
       </div>
@@ -74,21 +74,17 @@
         Please ensure the information above is correct before submitting.
       </span>
       <div class="submit-wrapper">
-        <input
-          type="submit"
-          value="Submit"
-          @click.stop.prevent="onSubmit"
-        />
+        <input type="submit" value="Submit" @click.stop.prevent="onSubmit" />
       </div>
     </form>
   </div>
 </template>
 
 <script>
-import repo from "../repo";
-import CatalogueItem from "../components/CatalogueItem";
+import repo from '../repo';
+import CatalogueItem from '../components/CatalogueItem';
 export default {
-  name: "ArtForm",
+  name: 'ArtForm',
   components: {
     CatalogueItem,
   },
@@ -122,7 +118,7 @@ export default {
   watch: {
     siteMapNumber(newValue) {
       if (newValue > 100) {
-        this.formData.siteMap = this.formData.siteMap.replace(/^./, "");
+        this.formData.siteMap = this.formData.siteMap.replace(/^./, '');
       }
       if (newValue < 1) {
         this.formData.siteMap = 1;
@@ -131,7 +127,7 @@ export default {
   },
   methods: {
     addItem() {
-      this.$store.commit("add");
+      this.$store.commit('add');
     },
     onError(error) {
       console.log({ error });
@@ -142,7 +138,7 @@ export default {
         return;
       }
 
-      this.message = "Unknown error (server may be down)";
+      this.message = 'Unknown error (server may be down)';
     },
     async load() {
       try {
@@ -155,7 +151,7 @@ export default {
       }
     },
     async onSubmit() {
-      this.message = "Submitting...";
+      this.message = 'Submitting...';
       try {
         const items = this.$store.getters.items;
         // Mix in items with rest of form data and submit
@@ -196,7 +192,7 @@ export default {
   .ex-wrapper {
     margin: 10px 0;
     input {
-      &[type="number"] {
+      &[type='number'] {
         width: 50px;
       }
     }

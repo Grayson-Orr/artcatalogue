@@ -18,7 +18,7 @@
           <span class="entry-title"
             >{{ entry.firstName }} {{ entry.lastName }}:
             <span class="bold">{{
-              cutoff(entry.title) || "Untitled"
+              cutoff(entry.title) || 'Untitled'
             }}</span></span
           >
           <span class="entry-info">
@@ -31,19 +31,19 @@
 </template>
 
 <script>
-import repo from "../repo";
+import repo from '../repo';
 export default {
-  name: "Entries",
+  name: 'Entries',
   data() {
     return {
-      message: "Loading entries...",
+      message: 'Loading entries...',
       entries: [],
       sortBySection: true,
     };
   },
   computed: {
     sortBySectionText() {
-      return `Sort by ${!this.sortBySection ? "section" : "site MAP number"}`;
+      return `Sort by ${!this.sortBySection ? 'section' : 'site MAP number'}`;
     },
   },
   async created() {
@@ -85,12 +85,12 @@ export default {
         const res = await repo.getEntries();
         this.entries = res.data;
         if (!this.entries || this.entries.length < 1) {
-          this.message = "No entries yet.";
+          this.message = 'No entries yet.';
         } else {
-          this.message = "Choose an entry to view.";
+          this.message = 'Choose an entry to view.';
         }
       } catch (error) {
-        this.message = "Failed to load entries, server may be down.";
+        this.message = 'Failed to load entries, server may be down.';
       }
     },
   },

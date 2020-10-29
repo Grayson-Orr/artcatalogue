@@ -1,7 +1,6 @@
 // SQL Statements to seed database
 
 module.exports = [
-
   `CREATE TABLE IF NOT EXISTS entries (
     uid               varchar(36) NOT NULL PRIMARY KEY,
     first_name        text NOT NULL,
@@ -28,6 +27,5 @@ module.exports = [
   `CREATE TABLE IF NOT EXISTS ips (
     ip                text NOT NULL,
     created           datetime NOT NULL DEFAULT NOW()
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8`
-  
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8`,
 ];

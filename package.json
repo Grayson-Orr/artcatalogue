@@ -2,13 +2,15 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "server": "nodemon server.js",
     "client": "npm run serve --prefix client",
     "client-install": "npm install --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "pretty": "prettier --write .",
+    "server": "nodemon server.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -19,7 +21,7 @@
     "koa": "^2.11.0",
     "koa-tree-router": "^0.5.0",
     "mysql2": "^1.7.0",
-    
+    "prettier": "^2.1.2",
     "uuid": "^3.4.0"
   },
   "devDependencies": {

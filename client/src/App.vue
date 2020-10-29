@@ -1,15 +1,13 @@
 <template>
   <div id="app">
-    <div class="nav-bar">
-    </div>
-    <router-view/>
+    <div class="nav-bar"></div>
+    <router-view />
   </div>
 </template>
 
 <style lang="scss">
-
 #app {
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: hsl(0, 0%, 10%);
@@ -28,13 +26,14 @@ body {
 
 .nav-bar {
   padding: 10px;
-
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 
@@ -44,18 +43,21 @@ hr {
   margin: 20px 0;
 }
 
-input[type="text"], input[type="number"], select {
+input[type='text'],
+input[type='number'],
+select {
   font-size: 0.7em;
   padding: 12px;
   border-radius: none;
   border: 1px solid hsl(0, 0%, 82%);
   box-shadow: inset 2px 2px 5px hsl(0, 0%, 92%);
   &:focus {
-    border: 1px solid #1DAEEA;
+    border: 1px solid #1daeea;
   }
 }
 
-input[type="submit"], input[type="button"] {
+input[type='submit'],
+input[type='button'] {
   cursor: pointer;
   padding: 12px;
   background: #67a3c2;
@@ -72,7 +74,8 @@ input[type="submit"], input[type="button"] {
   }
 }
 
-input, select {
+input,
+select {
   &:focus {
     outline-width: 0;
   }
@@ -88,8 +91,9 @@ label {
   }
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-weight: normal;
 }
-
 </style>

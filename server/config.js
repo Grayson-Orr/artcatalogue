@@ -8,7 +8,7 @@ module.exports = {
     corsOrigin: process.env.CORS_ORIGIN || "http://localhost:8080", // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin
   },
   database: {
-    url: process.env.DB_URL || "mysql://<USERNAME>:<PASSWORD>@mariadb.ict.op.ac.nz/in710shared_artsite",
+    url: process.env.DB_URL || "",
     seedOnStartup: parseInt(10), // Attempt to create all tables when server starts?
   }
 };

@@ -14,6 +14,7 @@ const entryFields = `
 
 const itemFields = `
   items.medium as medium,
+  items.additional_medium as additionalMedium,
   items.title as itemTitle,
   items.id as itemId,
   items.value as value,
@@ -40,19 +41,19 @@ const insertIp = async function (ip) {
 }
 
 // Check for an IP's existence
-const getIp = async function(ip) {
+const getIp = async function (ip) {
   const [res] = await db.execute({
     sql: "SELECT created FROM ips WHERE ip = ?",
     values: [ip],
   });
-  if(res && res.length > 0) {
+  if (res && res.length > 0) {
     return res[0];
   }
   return null;
 }
 
 // Purge IPs over an hour old
-const cleanIps = async function() {
+const cleanIps = async function () {
   return await db.execute({
     sql: "DELETE FROM ips WHERE created < DATE_ADD(NOW(), INTERVAL -1 HOUR)",
   });
@@ -61,7 +62,7 @@ const cleanIps = async function() {
 /**
  * Inserts a new ArtSite form into the database. Returns its unique ID. 
 */
-const insertForm = async function({ firstName, lastName, title, section, siteMap, items }) {
+const insertForm = async function ({ firstName, lastName, title, section, siteMap, items }) {
   const uid = uuid();
   const conn = await db.getConnection();
   try {
@@ -74,9 +75,9 @@ const insertForm = async function({ firstName, lastName, title, section, siteMap
               section = ?,
               title = ?,
               site_map = ?`,
-      values: [uid, firstName, lastName, section, title, siteMap,],
+      values: [uid, firstName, lastName, section, title, siteMap],
     });
-    items.forEach(async(item) => {
+    items.forEach(async (item) => {
       await conn.query({
         sql: `INSERT INTO items SET
                 entry_uid = ?,
@@ -85,12 +86,13 @@ const insertForm = async function({ firstName, lastName, title, section, siteMap
                 value = ?,
                 nfs = ?,
                 medium = ?,
+                additional_medium = ?,
                 dimensions = ?`,
-        values: [uid, item.id, item.title, item.value, item.nfs || false, item.medium, item.dimensions],
+        values: [uid, item.id, item.title, item.value, item.nfs || false, item.medium, item.additional_medium, item.dimensions],
       });
     });
     await conn.query("COMMIT");
-  } catch(error) {
+  } catch (error) {
     await conn.query("ROLLBACK");
     throw error;
   } finally {
@@ -99,14 +101,14 @@ const insertForm = async function({ firstName, lastName, title, section, siteMap
   return uid;
 }
 
-const getEntries = async function() {
+const getEntries = async function () {
   const [res] = await db.execute({
     sql: `SELECT ${entryFields} FROM entries`
   });
   return res;
 }
 
-const getEntry = async function(uid) {
+const getEntry = async function (uid) {
   const [results] = await db.execute({
     sql: `SELECT ${entryFields}, ${itemFields} FROM entries
       LEFT JOIN items ON items.entry_uid = entries.uid WHERE entries.uid = ?`,
@@ -114,7 +116,7 @@ const getEntry = async function(uid) {
     nestTables: true,
   });
 
-  if(results && results.length > 0) {
+  if (results && results.length > 0) {
     // Flatten SQL duplicates into nest
     const obj = results[0].entries;
     obj.items = [];

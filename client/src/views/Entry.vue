@@ -3,105 +3,107 @@
     <span v-if="message" class="message" v-html="message"></span>
     <div v-if="entry" class="entry-display">
       <div class="entry-header">
-        <h1 class="entry-section"> {{ entry.section }}</h1>
-        <img class="entry-logo" src="../assets/Web_DSA_RGB_H.jpg">
+        <h1 class="entry-section">SITE 2020 <br />{{ entry.section }}</h1>
+        <img class="entry-logo" src="../assets/std-starburst-150-DSA.png" />
       </div>
       <div class="entry-info">
         <div class="name-title-wrapper">
-          <h3 class="entry-name"> {{ name }} </h3>
-          <h3 class="entry-title"> {{ entry.title || "Untitled" }} </h3>
+          <h3 class="entry-name">{{ name }}</h3>
+          <h3 class="entry-title">{{ entry.title || "Untitled" }}</h3>
         </div>
         <div class="site-wrapper">
-          <p class="site-title"> site </p>
-          <p class="site-number"> {{ entry.siteMap }}</p>
+          <p class="site-title">site</p>
+          <p class="site-number">{{ entry.siteMap }}</p>
         </div>
       </div>
-      <hr>
+      <hr />
       <div class="items-table-wrapper">
         <table class="items-table">
           <thead>
             <tr>
-              <th> ID </th>
-              <th> Title </th>
-              <th> Medium </th>
-              <th> Price </th>
-              <th> Dimensions </th>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Medium</th>
+              <th>Additional Medium(s)</th>
+              <th>Price</th>
+              <th>Dimensions</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(item, key) in entry.items" :key="key">
-              <td> {{ item.itemId }} </td>
-              <td> {{ item.itemTitle || "Untitled item" }} </td>
-              <td> {{ item.medium }} </td>
-              <td> {{item.nfs ?  "Not for sale" : `$${item.value}` }} </td>
-              <td v-if="item.dimensions"> {{ item.dimensions }} </td>
+              <td>{{ item.itemId }}</td>
+              <td>{{ item.itemTitle || "Untitled item" }}</td>
+              <td>{{ item.medium }}</td>
+              <td>{{ item.additionalMedium || "No additional medium(s)" }}</td>
+              <td>{{ item.nfs ? "Not for sale" : `$${item.value}` }}</td>
+              <td v-if="item.dimensions">{{ item.dimensions }}</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-
   </div>
 </template>
 
 <style lang="scss">
-  .entry {
-    width: 900px;
-    margin: 0 auto;
-    hr {
-      width: 100%;
+.entry {
+  width: 900px;
+  margin: 0 auto;
+  hr {
+    width: 100%;
+  }
+  .entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .entry-logo {
+      width: 40%;
+      height: 40%;
     }
-    .entry-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      .entry-logo {
-        width: 40%;
-        height: 40%;
-      }
-    }
-    .entry-section {
+  }
+  .entry-section {
+    font-weight: bold;
+    color: hsl(0, 0%, 65%);
+  }
+  .entry-info {
+    display: flex;
+    justify-content: space-between;
+
+    .entry-name {
       font-weight: bold;
-      color: hsl(0, 0%, 65%);
     }
-    .entry-info {
-      display: flex;
-      justify-content: space-between;
 
-      .entry-name {
-          font-weight: bold;
+    .site-wrapper {
+      .site-title {
+        font-style: italic;
+        margin: 20px 0;
       }
-
-      .site-wrapper {
-        .site-title {
-          font-style: italic;
-          margin: 20px 0;
-        }
-        .site-number {
-          font-size: 1.4em;
-          font-weight: bold;
-          margin: 0px 0;
-        }
-      }
-    }
-    .items-table-wrapper {
-      .items-table {
-        width: 100%;
-        thead {
-          background: hsl(0, 0%, 85%);
-          color: hsl(0, 0%, 15%);
-          th {
-            font-weight: normal;
-            font-size: 0.9em;
-          }
-        }
-        td, th {
-          padding: 10px;
-          text-align: center;
-        }
+      .site-number {
+        font-size: 1.4em;
+        font-weight: bold;
+        margin: 0px 0;
       }
     }
   }
+  .items-table-wrapper {
+    .items-table {
+      width: 100%;
+      thead {
+        background: hsl(0, 0%, 85%);
+        color: hsl(0, 0%, 15%);
+        th {
+          font-weight: normal;
+          font-size: 0.9em;
+        }
+      }
+      td,
+      th {
+        padding: 10px;
+        text-align: center;
+      }
+    }
+  }
+}
 </style>
 
 <script>
@@ -128,14 +130,14 @@ export default {
         const res = await repo.getEntry(this.$route.params.uid);
         this.entry = res.data;
         this.message = null;
-      } catch(error) {
-        if(error && error.response && error.response.status == 404) {
+      } catch (error) {
+        if (error && error.response && error.response.status == 404) {
           this.message = "No such entry";
         } else {
           this.message = "Failed to load entry, server may be down.";
         }
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>

@@ -1,35 +1,58 @@
 <template>
   <div class="art-form">
-    <h1> Otago Polytechnic </h1>
+    <h1>Otago Polytechnic Ltd</h1>
     <span class="page-info">
       Fill out this form to add your art to the catalogue.
     </span>
     <p class="page-message" v-html="message"></p>
     <form autocomplete="off" class="art-form-form">
       <div class="details-wrapper">
-        <label> Entry information </label>
-        <input v-model="formData.firstName" type="text" placeholder="First Name">
-        <input v-model="formData.lastName" type="text" placeholder="Last Name">
+        <label> Entry Information </label>
+        <input
+          v-model="formData.firstName"
+          type="text"
+          placeholder="First Name"
+        />
+        <input
+          v-model="formData.lastName"
+          type="text"
+          placeholder="Last Name"
+        />
       </div>
       <div class="ex-wrapper">
-        <input v-model="formData.title" type="text" placeholder="Exhibition Title">
-        <input v-model="formData.siteMap" type="number" max="100" placeholder="Site MAP number">
+        <input
+          v-model="formData.title"
+          type="text"
+          placeholder="Exhibition Title"
+        />
+        <input
+          v-model="formData.siteMap"
+          type="number"
+          max="100"
+          placeholder="Site MAP number"
+        />
         <label class="little-label"> Site MAP number </label>
       </div>
       <div class="section-wrapper">
         <select class="section-select" v-model="formData.section">
-          <option v-for="section in sections" :key="section" :value="section">{{ section }}</option>
+          <option v-for="section in sections" :key="section" :value="section">{{
+            section
+          }}</option>
         </select>
         <label class="little-label"> Section </label>
       </div>
-      <label> Add catalogue items </label>
+      <hr />
+      <label> Add Catalogue Items </label>
       <div class="catalogue-items-wrapper">
         <ul class="catalogue-item-list">
           <li
             v-for="item in items"
             :key="item.id"
             @click.stop="selectedItem = item.id"
-            :class="{ selected: item.id == selectedItem }"> Item {{ item.id }} </li>
+            :class="{ selected: item.id == selectedItem }"
+          >
+            Item {{ item.id }}
+          </li>
         </ul>
         <CatalogueItem
           v-for="item in items"
@@ -40,10 +63,22 @@
         >
         </CatalogueItem>
       </div>
-      <input type="submit" @click.stop.prevent="addItem" class="add-item-btn" value="Create another item">
-      <hr>
+      <input
+        type="submit"
+        @click.stop.prevent="addItem"
+        class="add-item-btn"
+        value="Create Another Item"
+      />
+      <hr />
+      <span class="page-info">
+        Please ensure the information above is correct before submitting.
+      </span>
       <div class="submit-wrapper">
-        <input type="submit" value="Done and submit" @click.stop.prevent="onSubmit">
+        <input
+          type="submit"
+          value="Submit"
+          @click.stop.prevent="onSubmit"
+        />
       </div>
     </form>
   </div>
@@ -76,20 +111,20 @@ export default {
     await this.load();
   },
   computed: {
-    // Caches site MAP number to watch changes on it 
+    // Caches site MAP number to watch changes on it
     siteMapNumber() {
       return this.formData.siteMap;
     },
     items() {
       return this.$store.getters.items;
-    }
+    },
   },
   watch: {
     siteMapNumber(newValue) {
-      if(newValue > 100) {
-        this.formData.siteMap = this.formData.siteMap.replace(/^./, '');
+      if (newValue > 100) {
+        this.formData.siteMap = this.formData.siteMap.replace(/^./, "");
       }
-      if(newValue < 1) {
+      if (newValue < 1) {
         this.formData.siteMap = 1;
       }
     },
@@ -99,10 +134,10 @@ export default {
       this.$store.commit("add");
     },
     onError(error) {
-      console.log({error});
+      console.log({ error });
 
       // Display any errors that were received
-      if(error.response && error.response.data) {
+      if (error.response && error.response.data) {
         this.message = error.response.data;
         return;
       }
@@ -115,7 +150,7 @@ export default {
         this.sections = res.data.sections;
         this.mediums = res.data.mediums;
         this.formData.section = this.sections[0];
-      } catch(error) {
+      } catch (error) {
         this.onError(error);
       }
     },
@@ -130,17 +165,15 @@ export default {
         });
 
         this.message = `Success, your form is: <a href="entries/${res.data.uid}/">${res.data.uid}</a>`;
-
-      } catch(error) {
+      } catch (error) {
         this.onError(error);
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-
 .art-form {
   margin-left: 9px;
 
@@ -154,7 +187,8 @@ export default {
     text-align: center;
   }
 
-  input, select {
+  input,
+  select {
     margin-left: 10px;
     margin-right: 10px;
   }
@@ -193,7 +227,7 @@ export default {
         }
       }
     }
-    
+
     .catalogue-item {
       margin: 0 20px;
     }
@@ -203,6 +237,4 @@ export default {
     margin: 20px;
   }
 }
-
-
 </style>

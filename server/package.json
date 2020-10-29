@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ."
+    "start": "node .",
+    "dev": "nodemon ."
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
     "koa": "^2.11.0",
     "koa-tree-router": "^0.5.0",
     "mysql2": "^1.7.0",
+    "nodemon": "^2.0.6",
     "uuid": "^3.4.0"
   },
   "devDependencies": {

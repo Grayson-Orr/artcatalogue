@@ -12,6 +12,7 @@ export default new Vuex.Store({
         nfs: false,
         id: 1,
         medium: "Performance",
+        additionalMedium: null,
         dimensions: "20x20x20",
       }
     ],
@@ -20,6 +21,7 @@ export default new Vuex.Store({
     add(state) {
       state.items.push({
         medium: "Performance",
+        additionalMedium: null,
         title: null,
         value: 0,
         nfs: false,

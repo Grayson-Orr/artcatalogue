@@ -2,23 +2,27 @@
   <div class="catalogue-item">
     <transition name="fade">
       <form class="catalogue-item-form" @change="updateState">
-        <label class="desc"> Title </label>
+        <label class="desc"> Title * </label>
         <div class="title-wrapper">
           <input type="text" required v-model="item.title" :placeholder="itemPlaceholder" @input="1">
         </div>
-        <label class="desc"> Medium </label>
+        <label class="desc"> Medium * </label>
         <div class="medium-wrapper">
           <select required v-model="item.medium">
             <option v-for="medium in mediums" :key="medium" :value="medium"> {{ medium }} </option>
           </select>
         </div>
-        <label class="desc"> Dimensions are optional </label>
+        <label class="desc"> Additional Medium (Optional) </label>
+        <div class="medium-wrapper">
+         <input type="text" required v-model="item.additionalMedium" placeholder="Additional Medium">
+        </div>
+        <label class="desc"> Dimensions (Optional) </label>
         <div class="dimensions-wrapper">
           <input v-model="item.dimensions" type="text" placeholder="Dimensions" value="20x20x20">
           <label class="little-label"> (WxHxL) Centimetres </label>
         </div>
         <input v-model="item.nfs" type="checkbox">
-        <label class="little-label"> Not For Sale </label>
+        <label class="little-label"> Not For Sale * </label>
         <div class="dollars-wrapper">
           <input :disabled="item.nfs" v-model="item.value" type="number" placeholder="Dollars">
           <label class="little-label">$ Dollars</label>
@@ -36,6 +40,7 @@ export default {
       item: {
         title: null,
         medium: this.mediums[0],
+        additional_medium: null,
         value: 0,
         nfs: false,
         dimensions: "20x20x20"
@@ -58,6 +63,7 @@ export default {
         id: this.id,
         title: this.item.title,
         medium: this.item.medium,
+        additional_medium: this.item.additionalMedium,
         value: this.item.value,
         nfs: this.item.nfs,
         dimensions: this.item.dimensions,

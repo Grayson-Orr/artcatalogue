@@ -16,9 +16,10 @@ module.exports = [
     id                text NOT NULL,
     title             text DEFAULT null,
     medium            text NOT null,
+    additional_medium text DEFAULT null,
     value             bigint NOT NULL,
-    nfs               boolean default false,
-    dimensions        text default NULL,
+    nfs               boolean DEFAULT false,
+    dimensions        text DEFAULT NULL,
     CONSTRAINT fk_item_entry
       FOREIGN KEY (entry_uid) REFERENCES entries (uid)
       ON DELETE CASCADE

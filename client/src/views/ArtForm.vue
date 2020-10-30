@@ -107,7 +107,6 @@ export default {
     await this.load();
   },
   computed: {
-    // Caches site MAP number to watch changes on it
     siteMapNumber() {
       return this.formData.siteMap;
     },
@@ -131,14 +130,12 @@ export default {
     },
     onError(error) {
       console.log({ error });
-
-      // Display any errors that were received
       if (error.response && error.response.data) {
         this.message = error.response.data;
         return;
       }
 
-      this.message = 'Unknown error (server may be down)';
+      this.message = 'Unknown error, server may be down.';
     },
     async load() {
       try {
@@ -154,13 +151,12 @@ export default {
       this.message = 'Submitting...';
       try {
         const items = this.$store.getters.items;
-        // Mix in items with rest of form data and submit
         const res = await repo.submitForm({
           ...this.formData,
           items: items,
         });
 
-        this.message = `Success, your form is: <a href="entries/${res.data.uid}/">${res.data.uid}</a>`;
+        this.message = `Success...your form is: <a href="entries/${res.data.uid}/">${res.data.uid}</a>.`;
       } catch (error) {
         this.onError(error);
       }

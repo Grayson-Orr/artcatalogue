@@ -1,7 +1,13 @@
 import axios from 'axios';
-const baseURL = 'http://localhost:3000/api';
 
-console.log(baseURL);
+let baseURL = '';
+
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:5000/api';
+} else {
+  baseURL = 'https://otagopolytechnicsite2020.herokuapp.com/api';
+}
+
 const repo = axios.create({
   baseURL,
 });
@@ -11,7 +17,6 @@ export default {
     return repo.get('/');
   },
   async submitForm(obj) {
-    console.log('Items:', { items: obj.items });
     return repo.post('/entries', obj);
   },
   async getEntries() {

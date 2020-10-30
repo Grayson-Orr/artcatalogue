@@ -32,7 +32,6 @@ export default new Vuex.Store({
     update(state, payload) {
       state.items.forEach((item, index) => {
         if (item.id == payload.id) {
-          // Replace item's ID with new payload data.
           state.items[index] = payload;
         }
       });

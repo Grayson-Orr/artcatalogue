@@ -53,7 +53,6 @@ export default {
     onChangeSortBySection() {
       this.sortBySection = !this.sortBySection;
       if (this.sortBySection) {
-        // Sort entries by their section
         this.entries.sort((a, b) => {
           if (a.section < b.section) {
             return -1;
@@ -64,7 +63,6 @@ export default {
           return 0;
         });
       } else {
-        // Sort entries by their site map number
         this.entries.sort((a, b) => {
           if (a.siteMap < b.siteMap) {
             return -1;

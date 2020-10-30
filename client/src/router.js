@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import ArtForm from './views/ArtForm.vue';
+import Entries from './views/Entries.vue';
+import Entry from './views/Entry.vue';
 
 Vue.use(Router);
 
@@ -16,16 +18,12 @@ export default new Router({
     {
       path: '/entries',
       name: 'Entries',
-      component: function () {
-        return import(/* webpackChunkName: "entries" */ './views/Entries.vue');
-      },
+      component: Entries,
     },
     {
       path: '/entries/:uid',
       name: 'Entry',
-      component: function () {
-        return import(/* webpackChunkName: "entry" */ './views/Entry.vue');
-      },
+      component: Entry,
     },
   ],
 });

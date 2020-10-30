@@ -1,4 +1,3 @@
-// Database interactions
 const mysql = require('mysql2/promise');
 const uuid = require('uuid/v4');
 const config = require('../config');
@@ -22,26 +21,17 @@ const itemFields = `
   items.dimensions as dimensions
 `;
 
-// Start database connection
-
 const { url } = config.database;
-console.log('Establishing database connection');
-
-/**
- * Raw SQL connection pool object
- */
 const db = mysql.createPool(url);
 
-// Add IP
-const insertIp = async function (ip) {
+const insertIp = async (ip) => {
   return await db.execute({
     sql: 'INSERT INTO ips SET ip = ?',
     values: [ip],
   });
 };
 
-// Check for an IP's existence
-const getIp = async function (ip) {
+const getIp = async (ip) => {
   const [res] = await db.execute({
     sql: 'SELECT created FROM ips WHERE ip = ?',
     values: [ip],
@@ -52,16 +42,12 @@ const getIp = async function (ip) {
   return null;
 };
 
-// Purge IPs over an hour old
-const cleanIps = async function () {
+const cleanIps = async () => {
   return await db.execute({
     sql: 'DELETE FROM ips WHERE created < DATE_ADD(NOW(), INTERVAL -1 HOUR)',
   });
 };
 
-/**
- * Inserts a new ArtSite form into the database. Returns its unique ID.
- */
 const insertForm = async function ({
   firstName,
   lastName,
@@ -108,32 +94,34 @@ const insertForm = async function ({
       });
     });
     await conn.query('COMMIT');
-  } catch (error) {
+  } catch (err) {
     await conn.query('ROLLBACK');
-    throw error;
+    throw new Error(err);
   } finally {
     await conn.release();
   }
   return uid;
 };
 
-const getEntries = async function () {
+const getEntries = async () => {
   const [res] = await db.execute({
     sql: `SELECT ${entryFields} FROM entries`,
   });
   return res;
 };
 
-const getEntry = async function (uid) {
+const getEntry = async (uid) => {
   const [results] = await db.execute({
-    sql: `SELECT ${entryFields}, ${itemFields} FROM entries
-      LEFT JOIN items ON items.entry_uid = entries.uid WHERE entries.uid = ?`,
+    sql: `SELECT ${entryFields}, ${itemFields} 
+          FROM entries
+          LEFT JOIN items
+          ON items.entry_uid = entries.uid
+          WHERE entries.uid = ?`,
     values: [uid],
     nestTables: true,
   });
 
   if (results && results.length > 0) {
-    // Flatten SQL duplicates into nest
     const obj = results[0].entries;
     obj.items = [];
     results.forEach((res) => {

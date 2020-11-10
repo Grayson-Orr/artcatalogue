@@ -12,7 +12,7 @@ module.exports = [
     entry_uid         VARCHAR(36) NOT NULL,
     id                TEXT NOT NULL,
     title             TEXT DEFAULT null,
-    medium            TEXT NOT null,
+    medium            TEXT DEFAULT null,
     additional_medium TEXT DEFAULT null,
     value             BIGINT NOT NULL,
     nfs               BOOLEAN DEFAULT false,
@@ -23,7 +23,6 @@ module.exports = [
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`,
 
   `CREATE TABLE IF NOT EXISTS ips (
-    ip                TEXT NOT NULL,
-    created           DATETIME NOT NULL DEFAULT NOW()
+    ip                TEXT NOT NULL
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8`,
 ];

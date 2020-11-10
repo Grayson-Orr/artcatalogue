@@ -1,6 +1,6 @@
 <template>
   <div class="art-form">
-    <h1>Otago Polytechnic Ltd</h1>
+    <h1>Otago Polytechnic - SITE 2020</h1>
     <span class="page-info">
       Fill out this form to add your art to the catalogue.
     </span>
@@ -71,7 +71,10 @@
       />
       <hr />
       <span class="page-info">
-        Please ensure the information above is correct before submitting.
+        <strong
+          >Please ensure the information above is correct before
+          submitting.</strong
+        >
       </span>
       <div class="submit-wrapper">
         <input type="submit" value="Submit" @click.stop.prevent="onSubmit" />
@@ -148,15 +151,19 @@ export default {
       }
     },
     async onSubmit() {
-      this.message = 'Submitting...';
       try {
-        const items = this.$store.getters.items;
-        const res = await repo.submitForm({
-          ...this.formData,
-          items: items,
-        });
-
-        this.message = `Success...your form is: <a href="entries/${res.data.uid}/">${res.data.uid}</a>.`;
+        if (confirm('Press OK if your information is correct?')) {
+          this.message = 'Submitting...';
+          const items = this.$store.getters.items;
+          const res = await repo.submitForm({
+            ...this.formData,
+            items: items,
+          });
+          this.message = `Success...your form is: <a href="entries/${res.data.uid}/">${res.data.uid}</a>.`;
+          console.log('Thing was saved to the database.');
+        } else {
+          // Do nothing
+        }
       } catch (error) {
         this.onError(error);
       }

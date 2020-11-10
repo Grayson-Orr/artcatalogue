@@ -7,37 +7,37 @@ const router = new Router({
 });
 
 const sections = [
-  'PHEA',
   'Jewellery/Textile',
+  'PHEA',
   'Painting',
-  'Sculpture/Ceramics',
   'Printmaking',
+  'Sculpture/Ceramics',
 ];
 
 const mediums = [
-  'Performance',
-  'Digital file',
-  'Digital inkjet print',
   'Acrylic on board',
   'Acrylic on canvas',
   'Adapted found objects',
   'Bronze',
   'Ceramic',
-  'Digital c type print',
-  'Digital still',
   'DVD',
+  'Digital c type print',
+  'Digital file',
+  'Digital inkjet print',
+  'Digital still',
   'Earthenware',
   'Etching',
   'Fibre and board',
-  'Found objects',
   'Fibre based gelatin silver print',
+  'Found objects',
   'Intaglio',
   'Lithograph',
   'Mixed media',
   'Oil on board',
   'Oil on canvas',
-  'Sound media',
+  'Performance',
   'Screen print',
+  'Sound media',
   'Sterling silver',
   'Stoneware',
   'Woodblock',
@@ -86,9 +86,6 @@ const validateForm = ({
       const val = parseInt(item.value, 10);
       if (isNaN(val) || val < 0 || val > 100000) {
         errors.push(`Item ${i + 1} has an invalid price.`);
-      }
-      if (mediums.indexOf(item.medium) == -1) {
-        errors.push(`Item ${i + 1} has an invalid medium.`);
       }
       if (item.dimensions && item.dimensions.length > 14) {
         errors.push(`Item ${i + 1} has an invalid dimension.`);

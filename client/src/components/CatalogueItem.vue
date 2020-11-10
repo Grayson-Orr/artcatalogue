@@ -2,7 +2,7 @@
   <div class="catalogue-item">
     <transition name="fade">
       <form class="catalogue-item-form" @change="updateState">
-        <label class="desc"> Title * </label>
+        <label class="desc"> Title </label>
         <div class="title-wrapper">
           <input
             type="text"
@@ -12,15 +12,21 @@
             @input="1"
           />
         </div>
-        <label class="desc"> Medium * </label>
+        <label class="desc"> Medium </label>
         <div class="medium-wrapper">
-          <select required v-model="item.medium">
+          <select v-model="item.medium">
             <option v-for="medium in mediums" :key="medium" :value="medium">
               {{ medium }}
             </option>
           </select>
         </div>
-        <label class="desc"> Additional Medium (Optional) </label>
+        <label class="desc">
+          Additional Medium
+          <strong
+            >(Please ONLY fill this out if your medium is not in the dropdown
+            above)</strong
+          ></label
+        >
         <div class="medium-wrapper">
           <input
             type="text"
@@ -48,7 +54,13 @@
             type="number"
             placeholder="Dollars"
           />
-          <label class="little-label">$ Dollars</label>
+          <label class="little-label"
+            >$ Dollars -
+            <strong
+              >Please note that Otago Polytechnic takes a 25%
+              commission.</strong
+            ></label
+          >
         </div>
       </form>
     </transition>
@@ -62,7 +74,7 @@ export default {
     return {
       item: {
         title: null,
-        medium: this.mediums[0],
+        medium: null,
         additional_medium: null,
         value: 0,
         nfs: false,

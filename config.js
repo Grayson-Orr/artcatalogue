@@ -7,8 +7,7 @@ const server = {
 };
 
 const database = {
-  url:
-    process.env.DB_URL || 'mysql://<USERNAME>:<PASSWORD>@<ADDRESS>/<DATABASE NAME>',
+  url: process.env.CLEARDB_DATABASE_URL,
   seedOnStartup: parseInt(10),
 };
 

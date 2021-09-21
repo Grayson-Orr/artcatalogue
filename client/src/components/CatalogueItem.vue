@@ -72,10 +72,6 @@ export default {
       type: Number,
       required: true,
     },
-    // mediums: {
-    //   type: Array,
-    //   required: true,
-    // },
   },
   methods: {
     updateState() {

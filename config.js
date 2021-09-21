@@ -3,7 +3,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 const server = {
   host: process.env.HOST || '0.0.0.0',
   port: process.env.PORT || 5000,
-  corsOrigin: process.env.CORS_ORIGIN || 'http://localhost:8080',
+  corsOrigin: 'https://otagopolytechnicsite2021.herokuapp.com/' || 'http://localhost:8080',
 };
 
 const database = {

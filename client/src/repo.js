@@ -5,7 +5,7 @@ let baseURL = '';
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:5000/api';
 } else {
-  baseURL = 'https://otagopolytechnicsite2020.herokuapp.com/api';
+  baseURL = 'https://otagopolytechnicsite2021.herokuapp.com/api';
 }
 
 const repo = axios.create({

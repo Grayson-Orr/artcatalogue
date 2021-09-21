@@ -13,7 +13,6 @@ module.exports = [
     id                TEXT NOT NULL,
     title             TEXT DEFAULT null,
     medium            TEXT DEFAULT null,
-    additional_medium TEXT DEFAULT null,
     value             BIGINT NOT NULL,
     nfs               BOOLEAN DEFAULT false,
     dimensions        TEXT DEFAULT NULL,

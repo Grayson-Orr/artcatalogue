@@ -1,6 +1,6 @@
 <template>
   <div class="art-form">
-    <h1>Otago Polytechnic - SITE 2020</h1>
+    <h1>Otago Polytechnic - SITE 2021</h1>
     <span class="page-info">
       Fill out this form to add your art to the catalogue.
     </span>

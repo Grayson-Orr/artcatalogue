@@ -4,7 +4,7 @@
     <div v-if="entry" class="entry-display">
       <div class="entry-header">
         <h1 class="entry-section">SITE 2020 <br />{{ entry.section }}</h1>
-        <img class="entry-logo" src="../assets/std-starburst-150-DSA.png" />
+        <img class="entry-logo" src="../assets/DSA_BLACK_H.jpg" />
       </div>
       <div class="entry-info">
         <div class="name-title-wrapper">
@@ -24,7 +24,6 @@
               <th>ID</th>
               <th>Title</th>
               <th>Medium</th>
-              <th>Additional Medium(s)</th>
               <th>Price</th>
               <th>Dimensions</th>
             </tr>
@@ -34,7 +33,6 @@
               <td>{{ item.itemId }}</td>
               <td>{{ item.itemTitle || 'Untitled item' }}</td>
               <td>{{ item.medium || 'N/A' }}</td>
-              <td>{{ item.additionalMedium || 'No additional medium(s)' }}</td>
               <td>{{ item.nfs ? 'Not for sale' : `$${item.value}` }}</td>
               <td v-if="item.dimensions">{{ item.dimensions }}</td>
             </tr>

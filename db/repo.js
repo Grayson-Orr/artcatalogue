@@ -13,7 +13,6 @@ const entryFields = `
 
 const itemFields = `
   items.medium as medium,
-  items.additional_medium as additionalMedium,
   items.title as itemTitle,
   items.id as itemId,
   items.value as value,
@@ -79,7 +78,6 @@ const insertForm = async function ({
                 value = ?,
                 nfs = ?,
                 medium = ?,
-                additional_medium = ?,
                 dimensions = ?`,
         values: [
           uid,
@@ -88,7 +86,6 @@ const insertForm = async function ({
           item.value,
           item.nfs || false,
           item.medium,
-          item.additional_medium,
           item.dimensions,
         ],
       });

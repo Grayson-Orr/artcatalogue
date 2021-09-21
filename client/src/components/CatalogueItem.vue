@@ -13,26 +13,12 @@
           />
         </div>
         <label class="desc"> Medium </label>
-        <div class="medium-wrapper">
-          <select v-model="item.medium">
-            <option v-for="medium in mediums" :key="medium" :value="medium">
-              {{ medium }}
-            </option>
-          </select>
-        </div>
-        <label class="desc">
-          Additional Medium
-          <strong
-            >(Please ONLY fill this out if your medium is not in the dropdown
-            above)</strong
-          ></label
-        >
-        <div class="medium-wrapper">
+        <div class="title-wrapper">
           <input
             type="text"
             required
-            v-model="item.additionalMedium"
-            placeholder="Additional Medium"
+            v-model="item.medium"
+            placeholder="Medium"
           />
         </div>
         <label class="desc"> Dimensions (Optional) </label>
@@ -75,7 +61,6 @@ export default {
       item: {
         title: null,
         medium: null,
-        additional_medium: null,
         value: 0,
         nfs: false,
         dimensions: '20x20x20',
@@ -87,10 +72,10 @@ export default {
       type: Number,
       required: true,
     },
-    mediums: {
-      type: Array,
-      required: true,
-    },
+    // mediums: {
+    //   type: Array,
+    //   required: true,
+    // },
   },
   methods: {
     updateState() {
@@ -98,7 +83,6 @@ export default {
         id: this.id,
         title: this.item.title,
         medium: this.item.medium,
-        additional_medium: this.item.additionalMedium,
         value: this.item.value,
         nfs: this.item.nfs,
         dimensions: this.item.dimensions,

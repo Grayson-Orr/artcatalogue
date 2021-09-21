@@ -39,7 +39,7 @@
             {{ section }}
           </option>
         </select>
-        <label class="little-label"> Section </label>
+        <label class="little-label"> Studio </label>
       </div>
       <hr />
       <label> Add Catalogue Items </label>

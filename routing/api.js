@@ -7,11 +7,14 @@ const router = new Router({
 });
 
 const sections = [
-  'Jewellery/Textile',
-  'PHEA',
+  'Ceramics',
+  'Electronic Arts',
+  'Jewellery',
   'Painting',
-  'Printmaking',
-  'Sculpture/Ceramics',
+  'Photography',
+  'Print',
+  'Sculpture',
+  'Textiles',
 ];
 
 const mediums = [

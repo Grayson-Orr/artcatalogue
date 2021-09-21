@@ -3,7 +3,7 @@
     <span v-if="message" class="message" v-html="message"></span>
     <div v-if="entry" class="entry-display">
       <div class="entry-header">
-        <h1 class="entry-section">SITE 2020 <br />{{ entry.section }}</h1>
+        <h1 class="entry-section">SITE 2021 <br />{{ entry.section }}</h1>
         <img class="entry-logo" src="../assets/DSA_BLACK_H.jpg" />
       </div>
       <div class="entry-info">

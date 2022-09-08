@@ -17,7 +17,8 @@ const itemFields = `
   items.id as itemId,
   items.value as value,
   items.nfs as nfs,
-  items.dimensions as dimensions
+  items.dimensions as dimensions,
+  items.editions as editions
 `;
 
 const { url } = config.database;
@@ -78,7 +79,8 @@ const insertForm = async function ({
                 value = ?,
                 nfs = ?,
                 medium = ?,
-                dimensions = ?`,
+                dimensions = ?,
+                editions = ?`,
         values: [
           uid,
           item.id,
@@ -87,6 +89,7 @@ const insertForm = async function ({
           item.nfs || false,
           item.medium,
           item.dimensions,
+          item.editions,
         ],
       });
     });

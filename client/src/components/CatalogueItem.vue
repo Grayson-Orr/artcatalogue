@@ -2,7 +2,7 @@
   <div class="catalogue-item">
     <transition name="fade">
       <form class="catalogue-item-form" @change="updateState">
-        <label class="desc"> Title </label>
+        <label class="little-label"> Title * </label>
         <div class="title-wrapper">
           <input
             type="text"
@@ -12,7 +12,7 @@
             @input="1"
           />
         </div>
-        <label class="desc"> Medium </label>
+        <label class="little-label"> Medium * </label>
         <div class="title-wrapper">
           <input
             type="text"
@@ -21,7 +21,7 @@
             placeholder="Medium"
           />
         </div>
-        <label class="desc"> Dimensions (Optional) </label>
+        <label class="little-label"> Dimensions (Optional) </label>
         <div class="dimensions-wrapper">
           <input
             v-model="item.dimensions"
@@ -29,25 +29,29 @@
             placeholder="Dimensions"
             value="20x20x20"
           />
-          <label class="little-label"> (WxHxL) Centimetres </label>
+          <label class="little-label">
+            (Width x Height x Length) Centimetres
+          </label>
+        </div>
+        <input v-model="item.hasEdition" type="checkbox" />
+        <label class="little-label"
+          >Does your item have editions? (Optional)</label
+        >
+        <div class="edition-wrapper">
+          <label v-if="item.hasEdition" class="little-label">How many?</label>
+          <input v-if="item.hasEdition" v-model="item.editions" type="number" />
         </div>
         <input v-model="item.nfs" type="checkbox" />
-        <label class="little-label"> Not For Sale * </label>
+        <label class="little-label">Is your item for sale? * </label>
         <div class="dollars-wrapper">
-          <input
-            :disabled="item.nfs"
-            v-model="item.value"
-            type="number"
-            placeholder="Dollars"
-          />
-          <label class="little-label"
-            >$ Dollars -
-            <strong
-              >Please note that Otago Polytechnic takes a 25%
-              commission.</strong
-            ></label
-          >
+          <label v-if="item.nfs" class="little-label">NZ Dollars (NZD) </label>
+          <input v-if="item.nfs" v-model="item.value" type="number" />
         </div>
+        <span class="page-info">
+          <strong
+            >Please note that Otago Polytechnic takes a 25% commission.</strong
+          >
+        </span>
       </form>
     </transition>
   </div>
@@ -64,6 +68,8 @@ export default {
         value: 0,
         nfs: false,
         dimensions: '20x20x20',
+        hasEdition: false,
+        editions: 1,
       },
     };
   },
@@ -82,6 +88,8 @@ export default {
         value: this.item.value,
         nfs: this.item.nfs,
         dimensions: this.item.dimensions,
+        hasEdition: this.item.hasEdition,
+        editions: this.item.editions,
       });
     },
   },

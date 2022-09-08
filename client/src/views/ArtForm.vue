@@ -1,6 +1,6 @@
 <template>
   <div class="art-form">
-    <h1>Otago Polytechnic - SITE 2021</h1>
+    <h1>Dunedin School of Art - SITE 2022</h1>
     <span class="page-info">
       Fill out this form to add your art to the catalogue.
     </span>
@@ -29,9 +29,9 @@
           v-model="formData.siteMap"
           type="number"
           max="100"
-          placeholder="Site MAP number"
+          placeholder="SITE Map Number"
         />
-        <label class="little-label"> Site MAP number </label>
+        <label class="little-label"> SITE Map Number * </label>
       </div>
       <div class="section-wrapper">
         <select class="section-select" v-model="formData.section">
@@ -39,7 +39,7 @@
             {{ section }}
           </option>
         </select>
-        <label class="little-label"> Studio </label>
+        <label class="little-label"> Studio * </label>
       </div>
       <hr />
       <label> Add Catalogue Items </label>

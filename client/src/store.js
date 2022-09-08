@@ -13,6 +13,7 @@ export default new Vuex.Store({
         id: 1,
         medium: null,
         dimensions: '20x20x20',
+        // num_of_editions: 0
       },
     ],
   },
@@ -25,6 +26,7 @@ export default new Vuex.Store({
         nfs: false,
         id: state.items.length + 1,
         dimensions: '20x20x20',
+        // num_of_editions: 0
       });
     },
     update(state, payload) {

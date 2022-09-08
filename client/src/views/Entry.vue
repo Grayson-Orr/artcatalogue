@@ -3,8 +3,10 @@
     <span v-if="message" class="message" v-html="message"></span>
     <div v-if="entry" class="entry-display">
       <div class="entry-header">
-        <h1 class="entry-section">SITE 2021 <br />{{ entry.section }}</h1>
-        <img class="entry-logo" src="../assets/DSA_BLACK_H.jpg" />
+        <h1 class="entry-section">
+          Dunedin School of Art - SITE 2022 <br />{{ entry.section }}
+        </h1>
+        <!-- <img class="entry-logo" src="../assets/DSA_BLACK_H.jpg" /> -->
       </div>
       <div class="entry-info">
         <div class="name-title-wrapper">
@@ -26,6 +28,7 @@
               <th>Medium</th>
               <th>Price</th>
               <th>Dimensions</th>
+              <th>Number of Editions</th>
             </tr>
           </thead>
           <tbody>
@@ -35,6 +38,11 @@
               <td>{{ item.medium || 'N/A' }}</td>
               <td>{{ item.nfs ? 'Not for sale' : `$${item.value}` }}</td>
               <td v-if="item.dimensions">{{ item.dimensions }}</td>
+              <td>
+                <div class="circle" v-for="i in item.editions">
+                  <div class="content">{{ i }}</div>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -86,6 +94,7 @@
   .items-table-wrapper {
     .items-table {
       width: 100%;
+      border-collapse: collapse;
       thead {
         background: hsl(0, 0%, 85%);
         color: hsl(0, 0%, 15%);
@@ -99,7 +108,26 @@
         padding: 10px;
         text-align: center;
       }
+      td {
+        border-bottom: 1px solid #000;
+      }
     }
+  }
+  .circle {
+    height: 50px;
+    width: 50px;
+    background-color: hsl(0, 0%, 85%);
+    border-radius: 50%;
+    margin: 1.5% auto;
+    position: relative;
+  }
+  .content {
+    position: absolute;
+    width: inherit;
+    height: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
   }
 }
 </style>

@@ -79,7 +79,7 @@ const validateForm = ({
 
   const siteMapInt = parseInt(siteMap);
   if (!siteMapInt || siteMapInt > 100 || siteMapInt < 1) {
-    errors.push('Site MAP number must be from 1 to 100.');
+    errors.push('Site MAP Number must be from 1 to 100.');
   }
 
   if (!items.length || items.length < 1) {

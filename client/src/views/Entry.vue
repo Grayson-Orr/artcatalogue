@@ -36,7 +36,7 @@
               <td>{{ item.itemId }}</td>
               <td>{{ item.itemTitle || 'Untitled item' }}</td>
               <td>{{ item.medium || 'N/A' }}</td>
-              <td>{{ item.nfs ? 'Not for sale' : `$${item.value}` }}</td>
+              <td>{{ !item.nfs ? 'Not for sale' : `$${item.value}` }}</td>
               <td v-if="item.dimensions">{{ item.dimensions }}</td>
               <td>
                 <div class="circle" v-for="i in item.editions">

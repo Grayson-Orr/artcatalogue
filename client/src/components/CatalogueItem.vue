@@ -69,7 +69,7 @@ export default {
         nfs: false,
         dimensions: '20x20x20',
         hasEdition: false,
-        editions: 1,
+        editions: 0,
       },
     };
   },

@@ -1,13 +1,26 @@
 <template>
   <div class="art-form">
     <h1>Dunedin School of Art - SITE 2022</h1>
-    <span class="page-info">
-      Fill out this form to add your art to the catalogue.
-    </span>
+
+    <span class="page-info"
+      >You can find your entry information here -
+      <a
+        href="https://dunedin-school-of-art-site-22.herokuapp.com/entries"
+        target="_blank"
+        >https://dunedin-school-of-art-site-22.herokuapp.com/entries</a
+      ></span
+    >
+
+    <hr />
+
+        <span class="page-info"
+      >Fill out the following form to add your art to the catalogue.</span
+    >
+
     <p class="page-message" v-html="message"></p>
     <form autocomplete="off" class="art-form-form">
       <div class="details-wrapper">
-        <label> Entry Information </label>
+        <label>Entry Information</label>
         <input
           v-model="formData.firstName"
           type="text"
@@ -159,7 +172,7 @@ export default {
             ...this.formData,
             items: items,
           });
-          this.message = `Success...your form is: <a href="entries/${res.data.uid}/">${res.data.uid}</a>.`;
+          window.location.reload();
           console.log('Thing was saved to the database.');
         } else {
           // Do nothing

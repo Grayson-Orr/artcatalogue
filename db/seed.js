@@ -25,6 +25,7 @@ module.exports = [
       ON DELETE CASCADE
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`,
 
+  
   `CREATE TABLE IF NOT EXISTS ips (
     ip                TEXT NOT NULL
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8`,

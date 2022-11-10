@@ -6,7 +6,6 @@
         <h1 class="entry-section">
           Dunedin School of Art - SITE 2022 <br />{{ entry.section }}
         </h1>
-        <!-- <img class="entry-logo" src="../assets/DSA_BLACK_H.jpg" /> -->
       </div>
       <div class="entry-info">
         <div class="name-title-wrapper">

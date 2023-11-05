@@ -30,7 +30,7 @@
             value="20x20x20"
           />
           <label class="little-label">
-            (Width x Height x Depth) Centimetres
+            (Width x Height x Depth) Millimetres
           </label>
         </div>
         <input v-model="item.hasEdition" type="checkbox" />

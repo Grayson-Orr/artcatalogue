@@ -4,7 +4,7 @@
     <div v-if="entry" class="entry-display">
       <div class="entry-header">
         <h1 class="entry-section">
-          Dunedin School of Art - SITE 2022 <br />{{ entry.section }}
+          Dunedin School of Art - SITE 2023 <br />{{ entry.section }}
         </h1>
       </div>
       <div class="entry-info">

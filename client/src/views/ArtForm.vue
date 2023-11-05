@@ -1,6 +1,6 @@
 <template>
   <div class="art-form">
-    <h1>Dunedin School of Art - SITE 2022</h1>
+    <h1>Dunedin School of Art - SITE 2023</h1>
 
     <span class="page-info"
       >You can find your entry information here -

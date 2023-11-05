@@ -5,7 +5,7 @@ let baseURL = '';
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:5000/api';
 } else {
-  baseURL = 'https://dunedin-school-of-art-site-22.herokuapp.com/api';
+  baseURL = 'https://dunedin-school-of-art-site-23-ec904392c7ea.herokuapp.com/api';
 }
 
 const repo = axios.create({

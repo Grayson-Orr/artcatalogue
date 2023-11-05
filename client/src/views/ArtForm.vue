@@ -5,9 +5,9 @@
     <span class="page-info"
       >You can find your entry information here -
       <a
-        href="https://dunedin-school-of-art-site-22.herokuapp.com/entries"
+        href="https://dunedin-school-of-art-site-23-ec904392c7ea.herokuapp.com/entries"
         target="_blank"
-        >https://dunedin-school-of-art-site-22.herokuapp.com/entries</a
+        >https://dunedin-school-of-art-site-23-ec904392c7ea.herokuapp.com/entries</a
       ></span
     >
 

@@ -1,3 +1,4 @@
+
 <template>
   <div class="catalogue-item">
     <transition name="fade">
@@ -21,7 +22,7 @@
             placeholder="Medium"
           />
         </div>
-        <label class="little-label"> Dimensions (Optional) </label>
+        <label class="little-label"> Dimensions (Optional)</label>
         <div class="dimensions-wrapper">
           <input
             v-model="item.dimensions"
@@ -30,7 +31,7 @@
             value="20x20x20"
           />
           <label class="little-label">
-            (Width x Height x Depth) Centimetres
+            (Width x Height x Length) Centimetres
           </label>
         </div>
         <input v-model="item.hasEdition" type="checkbox" />

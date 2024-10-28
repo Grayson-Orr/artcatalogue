@@ -1,5 +1,7 @@
+/* eslint-disable */
 import Vue from 'vue';
 import Router from 'vue-router';
+
 import ArtForm from './views/ArtForm.vue';
 import Entries from './views/Entries.vue';
 import Entry from './views/Entry.vue';

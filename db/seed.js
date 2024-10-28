@@ -1,7 +1,4 @@
 module.exports = [
-  // `DROP TABLE IF EXISTS items`,
-  // `DROP TABLE IF EXISTS entries`,
-
   `CREATE TABLE IF NOT EXISTS entries (
     uid               VARCHAR(36) NOT NULL PRIMARY KEY,
     first_name        TEXT NOT NULL,

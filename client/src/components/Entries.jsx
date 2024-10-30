@@ -17,10 +17,8 @@ const Entries = () => {
             "Content-Type": "application/json",
           },
         });
-
         const data = await res.json();
         const entriesData = data.data || [];
-
         setEntries(entriesData);
         setMessage(
           entriesData.length > 0
@@ -49,19 +47,21 @@ const Entries = () => {
   return (
     <article className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-md">
       <header>
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">Entries</h1>
+        <h1 className="text-2xl font-bold text-gray-700 mb-4">Entries</h1>
       </header>
 
       <section>
         <p className="text-gray-700 mb-4">{message}</p>
       </section>
 
-      <input
-        onClick={toggleSortBy}
-        type="button"
-        value={`Sort By ${sortByLastName ? "SITE Map Number" : "Last Name"}`}
-        className="w-full py-2 px-4 mb-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none cursor-pointer"
-      />
+      {entries.length > 0 && (
+        <input
+          onClick={toggleSortBy}
+          type="button"
+          value={`Sort By ${sortByLastName ? "SITE Map Number" : "Last Name"}`}
+          className="w-full py-2 px-4 mb-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none cursor-pointer"
+        />
+      )}
 
       <ul>
         {entries.map((entry) => (

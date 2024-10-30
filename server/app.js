@@ -7,6 +7,7 @@ const prisma = new PrismaClient();
 const app = express();
 
 const PORT = process.env.PORT || 5000;
+const API_VERSION = "/api/v1";
 
 app.use(cors());
 app.use(express.json());
@@ -47,7 +48,7 @@ const validateCatalogueItem = (item) => {
   return errors;
 };
 
-app.get("/catalogue-items", async (req, res) => {
+app.get(`${API_VERSION}/catalogue-items`, async (req, res) => {
   try {
     const catalogueItems = await prisma.catalogueItem.findMany();
 
@@ -60,10 +61,10 @@ app.get("/catalogue-items", async (req, res) => {
 
     const groupedItemsArray = Object.entries(
       catalogueItems.reduce((acc, item) => {
-        const { uuid, ...itemData } = item; 
+        const { uuid, ...itemData } = item;
         if (!acc[uuid]) {
           acc[uuid] = {
-            uuid: uuid,
+            uuid,
             items: [],
             count: 0,
           };
@@ -86,11 +87,11 @@ app.get("/catalogue-items", async (req, res) => {
   }
 });
 
-app.get("/catalogue-items/:uuid", async (req, res) => {
+app.get(`${API_VERSION}/catalogue-items/:uuid`, async (req, res) => {
   const { uuid } = req.params;
 
   try {
-    const catalogueItem = await prisma.catalogueItem.findUnique({
+    const catalogueItem = await prisma.catalogueItem.findMany({
       where: { uuid },
     });
 
@@ -113,7 +114,7 @@ app.get("/catalogue-items/:uuid", async (req, res) => {
   }
 });
 
-app.post("/catalogue-items", async (req, res) => {
+app.post(`${API_VERSION}/catalogue-items`, async (req, res) => {
   const { firstName, lastName, siteMap, section, items } = req.body;
 
   const uuid = uuidv4();

@@ -1,6 +1,7 @@
 -- CreateTable
 CREATE TABLE "CatalogueItem" (
     "id" SERIAL NOT NULL,
+    "uuid" TEXT NOT NULL,
     "firstName" TEXT NOT NULL,
     "lastName" TEXT NOT NULL,
     "siteMap" INTEGER NOT NULL,

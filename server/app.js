@@ -58,9 +58,25 @@ app.get("/catalogue-items", async (req, res) => {
       });
     }
 
+    const groupedItemsArray = Object.entries(
+      catalogueItems.reduce((acc, item) => {
+        const { uuid, ...itemData } = item; 
+        if (!acc[uuid]) {
+          acc[uuid] = {
+            uuid: uuid,
+            items: [],
+            count: 0,
+          };
+        }
+        acc[uuid].items.push(itemData);
+        acc[uuid].count += 1;
+        return acc;
+      }, {})
+    ).map(([_, value]) => value);
+
     return res.status(200).json({
       success: true,
-      data: catalogueItems,
+      data: groupedItemsArray,
     });
   } catch (error) {
     return res.status(500).json({
@@ -100,6 +116,8 @@ app.get("/catalogue-items/:uuid", async (req, res) => {
 app.post("/catalogue-items", async (req, res) => {
   const { firstName, lastName, siteMap, section, items } = req.body;
 
+  const uuid = uuidv4();
+
   const catalogueItems = [];
   const errors = {};
 
@@ -117,7 +135,7 @@ app.post("/catalogue-items", async (req, res) => {
     } else {
       catalogueItems.push({
         ...item,
-        uuid: uuidv4(),
+        uuid,
         firstName,
         lastName,
         siteMap,

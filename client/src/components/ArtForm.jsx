@@ -3,6 +3,7 @@ import CatalogueItem from "./CatalogueItem";
 
 const ArtForm = () => {
   const baseURL = import.meta.env.VITE_BASE_URL;
+  const apiBaseURL = import.meta.env.VITE_API_BASE_URL;
 
   const sections = [
     "Ceramics",
@@ -79,7 +80,7 @@ const ArtForm = () => {
       }));
 
       try {
-        const res = await fetch(`${baseURL}/catalogue-items`, {
+        const res = await fetch(`${apiBaseURL}/catalogue-items`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -87,17 +88,17 @@ const ArtForm = () => {
           body: JSON.stringify({
             firstName: formData.firstName,
             lastName: formData.lastName,
-            siteMap: formData.siteMap,
+            siteMap: parseInt(formData.siteMap, 10),
             section: formData.section,
             items: formattedItems,
           }),
         });
 
-        const result = await res.json();
+        const data = await res.json();
 
         if (!res.ok) {
           setMessage("Submission unsuccessful.");
-          setErrors(result.errors || {});
+          setErrors(data.errors || {});
         } else {
           setMessage("Submission successful.");
           setFormData({
@@ -121,10 +122,10 @@ const ArtForm = () => {
   return (
     <article className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-md">
       <header>
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">
+        <h1 className="text-2xl font-bold text-gray-700 mb-4">
           Dunedin School of Art - SITE 2024
         </h1>
-        <p className="text-gray-600 mb-4">
+        <p className="text-gray-700 mb-4">
           You can find your entry information here -{" "}
           <a
             href="/entries"
@@ -234,7 +235,7 @@ const ArtForm = () => {
         </fieldset>
 
         <section>
-          <p className="text-gray-600">
+          <p className="text-gray-700">
             Please note that Otago Polytechnic takes a 25% commission.
           </p>
         </section>

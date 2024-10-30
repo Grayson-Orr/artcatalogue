@@ -12,7 +12,7 @@ const CatalogueItem = ({ id, item, onChange, onDelete, submitted, errors }) => {
   return (
     <article className="mb-6 p-4 border rounded-lg shadow-md bg-white">
       <header className="flex justify-between items-center">
-        <h2 className="text-xl font-semibold text-gray-800">Item {id + 1}</h2>
+        <h2 className="text-xl font-semibold text-gray-700">Item {id + 1}</h2>
         <div className="space-x-2">
           <button
             type="button"
@@ -65,7 +65,7 @@ const CatalogueItem = ({ id, item, onChange, onDelete, submitted, errors }) => {
             )}
 
             <label className="block text-gray-700 mt-2">
-              Dimensions (Width x Height x Length in cm)
+              Dimensions (width x height x length in cm)
             </label>
             <input
               type="text"

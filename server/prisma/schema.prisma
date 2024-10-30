@@ -12,7 +12,7 @@ datasource db {
 
 model CatalogueItem {
   id         Int      @id @default(autoincrement())
-  uuid       String   @unique
+  uuid       String   
   firstName  String
   lastName   String
   siteMap    Int

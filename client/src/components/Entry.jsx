@@ -70,7 +70,7 @@ const Entry = () => {
               <p className="text-lg text-gray-600">{entries[0].section}</p>
             </div>
             <div className="flex items-center">
-              <p className="text-xl font-semibold text-gray-700">SITE map:</p>
+              <p className="text-xl font-semibold text-gray-700">SITE Map Number:</p>
               <span className="ml-2 text-lg text-gray-600">
                 {entries[0].siteMap}
               </span>

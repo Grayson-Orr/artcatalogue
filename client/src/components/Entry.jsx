@@ -19,7 +19,9 @@ const Entry = () => {
         });
         const data = await res.json();
         setEntries(data.data || []);
-        setMessage(data.data && data.data.length > 0 ? "" : "No entries found.");
+        setMessage(
+          data.data && data.data.length > 0 ? "" : "No entries found."
+        );
       } catch (error) {
         setMessage("Failed to load entry.");
       }
@@ -28,7 +30,9 @@ const Entry = () => {
     loadEntry();
   }, [apiBaseURL, uuid]);
 
-  const hasEditions = entries.some((entry) => entry.editions && entry.editions > 0);
+  const hasEditions = entries.some(
+    (entry) => entry.editions && entry.editions > 0
+  );
 
   return (
     <div className="max-w-5xl mx-auto my-12 p-8 bg-white shadow-md rounded-md print:max-w-full print:my-0 print:p-4 print:shadow-none">
@@ -54,13 +58,23 @@ const Entry = () => {
       {entries.length > 0 && (
         <div>
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-700">Dunedin School of Art - SITE 2024</h1>
+            <h1 className="text-3xl font-bold text-gray-700">
+              Dunedin School of Art - SITE 2024
+            </h1>
           </div>
-          <div className="mb-6">
-            <p className="text-xl font-semibold text-gray-700">
-              {entries[0].firstName} {entries[0].lastName}
-            </p>
-            <p className="text-lg text-gray-600">{entries[0].section}</p>
+          <div className="mb-6 flex justify-between items-center">
+            <div>
+              <p className="text-xl font-semibold text-gray-700">
+                {entries[0].firstName} {entries[0].lastName}
+              </p>
+              <p className="text-lg text-gray-600">{entries[0].section}</p>
+            </div>
+            <div className="flex items-center">
+              <p className="text-xl font-semibold text-gray-700">SITE map:</p>
+              <span className="ml-2 text-lg text-gray-600">
+                {entries[0].siteMap}
+              </span>
+            </div>
           </div>
           <hr className="border-gray-300 my-6" />
           <div className="overflow-x-auto">
@@ -84,7 +98,9 @@ const Entry = () => {
                     <td className="p-4 text-center text-lg">
                       {!entry.nfs ? "Not for sale." : `$${entry.value}`}
                     </td>
-                    <td className="p-4 text-center text-lg">{entry.dimensions}</td>
+                    <td className="p-4 text-center text-lg">
+                      {entry.dimensions}
+                    </td>
                     {hasEditions && (
                       <td className="p-4 flex justify-center gap-2">
                         {[...Array(entry.editions || 0)].map((_, i) => (

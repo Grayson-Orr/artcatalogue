@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const Entry = () => {
@@ -46,10 +46,6 @@ const Entry = () => {
             .print-hidden {
               display: none !important;
             }
-            th, td {
-              padding: 8px;
-              border: 1px solid #000;
-            }
           }
         `}
       </style>
@@ -70,7 +66,9 @@ const Entry = () => {
               <p className="text-lg text-gray-600">{entries[0].section}</p>
             </div>
             <div className="flex items-center">
-              <p className="text-xl font-semibold text-gray-700">SITE Map Number:</p>
+              <p className="text-xl font-semibold text-gray-700">
+                SITE Map Number:
+              </p>
               <span className="ml-2 text-lg text-gray-600">
                 {entries[0].siteMap}
               </span>
@@ -78,7 +76,7 @@ const Entry = () => {
           </div>
           <hr className="border-gray-300 my-6" />
           <div className="overflow-x-auto">
-            <table className="w-full border border-gray-400 border-collapse print:border-none">
+            <table className="w-full border-collapse print:border-none">
               <thead>
                 <tr className="bg-gray-200 text-gray-700">
                   <th className="p-4 text-lg">ID</th>
@@ -90,31 +88,84 @@ const Entry = () => {
                 </tr>
               </thead>
               <tbody>
-                {entries.map((entry) => (
-                  <tr key={entry.id} className="text-gray-700 border-b">
-                    <td className="p-4 text-center text-lg">{entry.id}</td>
-                    <td className="p-4 text-center text-lg">{entry.title}</td>
-                    <td className="p-4 text-center text-lg">{entry.medium}</td>
-                    <td className="p-4 text-center text-lg">
-                      {!entry.nfs ? "Not for sale." : `$${entry.value}`}
-                    </td>
-                    <td className="p-4 text-center text-lg">
-                      {entry.dimensions}
-                    </td>
-                    {hasEditions && (
-                      <td className="p-4 flex justify-center gap-2">
-                        {[...Array(entry.editions || 0)].map((_, i) => (
-                          <div
-                            key={i}
-                            className="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center text-sm font-bold"
-                          >
-                            {i + 1}
-                          </div>
-                        ))}
-                      </td>
-                    )}
-                  </tr>
-                ))}
+                {entries.map((entry) => {
+                  const editionGroups = [];
+                  if (entry.editions && entry.editions > 0) {
+                    for (let i = 0; i < entry.editions; i += 5) {
+                      editionGroups.push(
+                        Array.from(
+                          { length: Math.min(5, entry.editions - i) },
+                          (_, j) => i + j + 1
+                        )
+                      );
+                    }
+                  }
+                  return (
+                    <Fragment key={entry.id}>
+                      <tr className="text-gray-700">
+                        <td
+                          className="p-4 text-center text-lg"
+                          rowSpan={editionGroups.length || 1}
+                        >
+                          {entry.id}
+                        </td>
+                        <td
+                          className="p-4 text-center text-lg"
+                          rowSpan={editionGroups.length || 1}
+                        >
+                          {entry.title}
+                        </td>
+                        <td
+                          className="p-4 text-center text-lg"
+                          rowSpan={editionGroups.length || 1}
+                        >
+                          {entry.medium}
+                        </td>
+                        <td
+                          className="p-4 text-center text-lg"
+                          rowSpan={editionGroups.length || 1}
+                        >
+                          {!entry.nfs ? "Not for sale." : `$${entry.value}`}
+                        </td>
+                        <td
+                          className="p-4 text-center text-lg"
+                          rowSpan={editionGroups.length || 1}
+                        >
+                          {entry.dimensions}
+                        </td>
+                        {hasEditions && (
+                          <td className="p-4 flex justify-center gap-2">
+                            {editionGroups[0]?.map((edition) => (
+                              <div
+                                key={edition}
+                                className="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center text-sm font-bold"
+                              >
+                                {edition}
+                              </div>
+                            ))}
+                          </td>
+                        )}
+                      </tr>
+                      {editionGroups.slice(1).map((group, index) => (
+                        <tr
+                          key={`${entry.id}-group-${index}`}
+                          className="text-gray-700"
+                        >
+                          <td className="p-4 flex justify-center gap-2">
+                            {group.map((edition) => (
+                              <div
+                                key={edition}
+                                className="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center text-sm font-bold"
+                              >
+                                {edition}
+                              </div>
+                            ))}
+                          </td>
+                        </tr>
+                      ))}
+                    </Fragment>
+                  );
+                })}
               </tbody>
             </table>
           </div>
